@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Min profil{% endblock %}
+
+{% block content %}
+<h1>🧑‍🌾 Min bondprofil</h1>
+
+{% if farmer[4] %}
+    <img src="/{{ farmer[4] }}" alt="Gårdsbild" style="max-width: 300px; border: 1px solid #ccc; margin-bottom: 1rem;">
+{% else %}
+    <p><em>Ingen bild uppladdad.</em></p>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+    <label for="name">Namn:</label>
+    <input type="text" name="name" value="{{ farmer[0] }}" required>
+
+    <label for="farm_name">Gårdsnamn:</label>
+    <input type="text" name="farm_name" value="{{ farmer[1] }}" required>
+
+    <label for="username">Användarnamn:</label>
+    <input type="text" name="username" value="{{ farmer[2] }}" required>
+
+    <label for="password">Lösenord:</label>
+    <input type="text" name="password" value="{{ farmer[3] }}" required>
+
+    <label for="image">Uppdatera gårdsbild:</label>
+    <input type="file" name="image" accept="image/*">
+
+    <label>
+        <input type="checkbox" name="remove_image">
+        Ta bort befintlig bild
+    </label>
+        
+    <button type="submit">💾 Spara ändringar</button>
+</form>
+{% endblock %}

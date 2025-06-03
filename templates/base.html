@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Gårdsvagnen{% endblock %}</title>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 40px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-top: 30px;
+        }
+        .product {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        .farm-name {
+            font-style: italic;
+            color: #666;
+        }
+        .button-form {
+            display: inline;
+            margin-left: 10px;
+        }
+
+        /* ✅ NY MENYSTIL */
+        .sidebar {
+            margin-bottom: 30px;
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .sidebar img {
+            height: 32px;
+            border-radius: 5px;
+        }
+        .sidebar a button {
+            padding: 6px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .sidebar a button.danger {
+            background-color: #e53935;
+        }
+        .sidebar a {
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="sidebar">
+        {% if session.get('admin_id') %}
+            👨‍💼 Inloggad som admin
+            <a href="/admin/menu"><button>🏠 Meny</button></a>
+            <a href="/admin/select_farm"><button>🏡 Gårdsval</button></a>
+            <a href="/admin/vagnen"><button>📦 Produkter i vagnen</button></a>
+            <a href="/logout"><button class="danger">🚪 Logga ut</button></a>
+
+        {% elif session.get('driver_id') %}
+            🚚 Inloggad som förare
+            <a href="/driver/menu"><button>🏠 Meny</button></a>
+            <a href="/driver/pickup"><button>🛻 Hämta upp</button></a>
+            <a href="/driver/vagn"><button>📦 Vagnens innehåll</button></a>
+            <a href="/logout_driver"><button class="danger">🚪 Logga ut</button></a>
+
+        {% elif session.get('user_id') %}
+            🧑‍🌾 Inloggad som bonde
+
+            {% if farmer_image %}
+                <img src="/{{ farmer_image }}" alt="Gårdsbild">
+            {% endif %}
+
+            <a href="/farmer/menu"><button>🏠 Meny</button></a>
+            <a href="/register"><button>➕ Lägg till produkt</button></a>
+            <a href="/farmer/profile"><button>👤 Min profil</button></a>
+            <a href="/logout"><button class="danger">🚪 Logga ut</button></a>
+        {% endif %}
+    </div>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

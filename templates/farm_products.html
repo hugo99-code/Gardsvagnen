@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}🌾 {{ farm_name }} – Produkter{% endblock %}
+
+{% block content %}
+<h1>🌾 Produkter från {{ farm_name }}</h1>
+
+{% for category, products in products_by_category.items() %}
+    <h2>{{ category }}</h2>
+    {% if products %}
+        {% for p in products %}
+            <div class="product">
+                <strong>{{ p[1] }}</strong> – {{ p[3] }} {{ p[6] }}<br>
+                <span class="farm-name">{{ p[4] }}</span><br>
+                <form method="POST" class="button-form">
+                    <input type="hidden" name="product_id" value="{{ p[0] }}">
+                    {% if p[5] == 0 %}
+                        <input type="hidden" name="action" value="add">
+                        <button type="submit">➕ Lägg till i vagnen</button>
+                    {% else %}
+                        <input type="hidden" name="action" value="remove">
+                        <button type="submit">➖ Ta bort från vagnen</button>
+                    {% endif %}
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="product">Inga produkter i denna kategori.</p>
+    {% endif %}
+{% endfor %}
+{% endblock %}

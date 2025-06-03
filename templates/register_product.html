@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Lägg till produkt{% endblock %}
+
+{% block content %}
+<h1>➕ Lägg till produkt</h1>
+<form method="POST">
+    <label for="category">Kategori:</label>
+    <select name="category" required>
+        <option value="Kött & Fågel">Kött & Fågel</option>
+        <option value="Frukt & Grönt">Frukt & Grönt</option>
+        <option value="Ägg & Mejeri">Ägg & Mejeri</option>
+        <option value="Bröd & Bullar">Bröd & Bullar</option>
+        <option value="Övrigt">Övrigt</option>
+    </select>
+
+    <label for="name">Produktnamn:</label>
+    <input type="text" name="name" required>
+
+    <label for="weight">Mängd:</label>
+    <input type="number" step="0.01" name="weight" required>
+
+    <label for="unit">Enhet:</label>
+    <select name="unit">
+        <option value="kg">Kilogram</option>
+        <option value="st">Antal</option>
+    </select>
+
+    <label for="description">Beskrivning:</label>
+    <textarea name="description" rows="3"></textarea>
+
+    <button type="submit">Lägg till produkt</button>
+</form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}📦 Innehåll i vagnen{% endblock %}
+
+{% block content %}
+<h1>📦 Innehåll i vagnen (upphämtat)</h1>
+
+{% for category, farms in structured.items() %}
+    <h2>{{ category }}</h2>
+    {% for farm, products in farms.items() %}
+        <h3>{{ farm }}</h3>
+        {% for product_id, name, weight, unit in products %}
+            <div class="product">
+                <strong>{{ name }}</strong> – {{ weight }} {{ unit }}
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="product_id" value="{{ product_id }}">
+                    <button class="danger" type="submit">❌ Slutsåld</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+
+{% if not structured %}
+    <p>Inga produkter har hämtats upp ännu.</p>
+{% endif %}
+{% endblock %}

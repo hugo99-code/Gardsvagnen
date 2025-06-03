@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adminpanel – Gårdsvagnen</title>
+</head>
+<body>
+    <h2>Adminpanel – Produkter per gård</h2>
+
+    {% set current_farm = None %}
+    {% for product in products %}
+        {% if product[6] != current_farm %}
+            {% if not loop.first %}</table><br>{% endif %}
+            <h3>{{ product[6] }}</h3>
+            <table border="1" cellpadding="6" cellspacing="0">
+                <tr>
+                    <th>ID</th>
+                    <th>Kategori</th>
+                    <th>Namn</th>
+                    <th>Vikt (kg)</th>
+                    <th>Beskrivning</th>
+                    <th>Status</th>
+                    <th>Åtgärd</th>
+                </tr>
+            {% set current_farm = product[6] %}
+        {% endif %}
+
+        <tr>
+            <td>{{ product[0] }}</td> <!-- ID -->
+            <td>{{ product[2] }}</td> <!-- Kategori -->
+            <td>{{ product[1] }}</td> <!-- Namn -->
+            <td>{{ product[3] }}</td> <!-- Vikt -->
+            <td>{{ product[4] }}</td> <!-- Beskrivning -->
+            <td>
+                {% if product[5] == 1 %}
+                    ✅ I Gårdsvagnen
+                {% else %}
+                    ⏳ Ej tillagd
+                {% endif %}
+            </td>
+            <td>
+                <form method="POST">
+                    <input type="hidden" name="product_id" value="{{ product[0] }}">
+                    {% if product[5] == 0 %}
+                        <input type="hidden" name="action" value="add">
+                        <button type="submit">Lägg till</button>
+                    {% else %}
+                        <input type="hidden" name="action" value="remove">
+                        <button type="submit">Ta bort</button>
+                    {% endif %}
+                </form>
+            </td>
+        </tr>
+        {% if loop.last %}</table>{% endif %}
+    {% endfor %}
+
+    <br>
+    <a href="/">Logga ut</a>
+</body>
+</html>

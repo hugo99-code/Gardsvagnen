@@ -1,0 +1,114 @@
+/* === Baslayout === */
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: #f6f9f6;
+  color: #2c3e50;
+  margin: 40px;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #235a3c;
+}
+
+h2 {
+  font-size: 22px;
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #e8f5e9;
+  border-left: 5px solid #81c784;
+  border-radius: 4px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #388e3c;
+  margin-left: 10px;
+}
+
+/* === Produktblock === */
+.product {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+  margin-left: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.farm-name {
+  font-style: italic;
+  color: #7e8c8d;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* === Formulär och knappar === */
+form {
+  margin-top: 5px;
+}
+
+button {
+  background-color: #81c784;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  margin-top: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #66bb6a;
+}
+
+.button-form {
+  display: inline;
+  margin-left: 10px;
+}
+
+/* === Navigering === */
+.nav {
+  border-bottom: 1px solid #d0e2d3;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+
+.nav a {
+  color: #2e7d32;
+  margin-right: 25px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* === Listor och urval === */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li button {
+  background-color: #a5d6a7;
+  width: 100%;
+  text-align: left;
+}
+
+/* === Länkar === */
+a {
+  color: #388e3c;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

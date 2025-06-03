@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}🛻 Upphämtningslista{% endblock %}
+
+{% block content %}
+<h1>🛻 Produkter att hämta upp</h1>
+
+{% for farm, products in products_by_farm.items() %}
+    <h2>{{ farm }}</h2>
+    {% if products %}
+        {% for p in products %}
+            <div class="product">
+                <strong>{{ p[1] }}</strong> – {{ p[3] }} {{ p[6] }}<br>
+                <form method="POST" class="button-form">
+                    <input type="hidden" name="product_id" value="{{ p[0] }}">
+                    <button type="submit">✅ Checka av</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="product">Inga produkter att hämta från denna gård.</p>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}
