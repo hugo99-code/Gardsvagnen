@@ -62,6 +62,29 @@ def inject_farmer_image():
             return {'farmer_image': result[0] if result and result[0] else None}
     return {'farmer_image': None}
 
+@app.route("/alla-tabeller")
+def alla_tabeller():
+    con = sqlite3.connect("databas.db")
+    cur = con.cursor()
+
+    tabeller = ["product", "farmer", "user", "driver", "admin", "wagon"]  # lägg till dina
+    data = {}
+
+    for tabell in tabeller:
+        cur.execute(f"SELECT * FROM {tabell}")
+        rows = cur.fetchall()
+
+        cur.execute(f"PRAGMA table_info({tabell})")
+        columns = [col[1] for col in cur.fetchall()]
+
+        data[tabell] = {
+            "columns": columns,
+            "rows": rows
+        }
+
+    con.close()
+    return render_template("alla_tabeller.html", data=data)
+
 @app.route('/', methods=['GET', 'POST'])
 def login():
     error = None
